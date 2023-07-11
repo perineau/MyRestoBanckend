@@ -1,0 +1,14 @@
+- name: install git
+  package:
+    name: git
+    state: present
+
+- name: clone repo
+  ansible.builtin.git:
+    repo: https://github.com/perineau/MyRestoBanckend.git
+    dest: /srv/myresto
+
+- name: up my resto
+  community.docker.docker_compose:
+    project_src: /srv/myresto
+    state: present
